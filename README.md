@@ -1,1 +1,1 @@
-Laptop store built with node.js
+Laptop store built with Node.js
