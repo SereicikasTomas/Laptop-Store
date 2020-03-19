@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
       "utf-8",
       (err, data) => {
         let overviewOutput = data;
-        
+
         fs.readFile(
           `${__dirname}/templates/template-card.html`,
           "utf-8",
@@ -40,7 +40,12 @@ const server = http.createServer((req, res) => {
         res.end(output);
       }
     );
-  } else {
+    }else if((/\.(jpg|jpeg|png|gif)$/i).test(pathName)){
+      fs.readFile(`${__dirname}/data/img${pathName}`, (err, data) => {
+        res.writeHead(200, { "Content-type": "image/jpg" });
+        res.end(data);
+      })
+    } else {
     res.writeHead(404, { "Content-type": "text/html" });
     res.end("This is the 404 page.");
   }
